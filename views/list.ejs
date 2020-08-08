@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>To do list app</title>
+  </head>
+  <body>
+    <div class="box" id="heading">
+      <h1><%= kindOfDay %></h1>
+    </div>
+
+    <div class="box">
+      <% addItem.forEach(function(item){%>
+      <form action="/delete" method="post">
+        <div class="item">
+          <input
+            type="checkbox"
+            value="<%= item._id %>"
+            name="checkbox"
+            onChange="this.form.submit()"
+          />
+          <input type="hidden" name="listNameHidden" value="<%=kindOfDay%>"></input>
+          <p><%= item.item %></p>
+        </div>
+      </form>
+
+      <% })%>
+      <form action="/" method="POST">
+        <input type="text" name="newItem" placeholder="New Item" />
+        <button type="submit" name="listName" value="<%= kindOfDay%>">+</button>
+      </form>
+    </div>
+  </body>
+</html>
